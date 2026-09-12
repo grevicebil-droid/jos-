@@ -1,0 +1,427 @@
+Voici la version améliorée complète. Je récupère le fichier enregistré pour te renvoyer exactement le code final, sans variation.
+
+Read 
+
+```html
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>Analyse spéciale | José</title>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101827;
+      --panel: #1c293b;
+      --panel-soft: #24344a;
+      --text: #f8fafc;
+      --muted: #b6c2d2;
+      --accent: #ffb703;
+      --accent-strong: #fb8500;
+      --danger: #ff5d73;
+      --danger-soft: #451724;
+      --border: rgb(255 255 255 / 10%);
+      --shadow: 0 24px 80px rgb(0 0 0 / 35%);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 1.25rem;
+      overflow-x: hidden;
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgb(255 183 3 / 14%), transparent 28rem),
+        radial-gradient(circle at 90% 90%, rgb(255 93 115 / 13%), transparent 30rem),
+        var(--bg);
+    }
+
+    .container {
+      width: min(100%, 48rem);
+    }
+
+    .card {
+      padding: clamp(1.5rem, 5vw, 3.5rem);
+      overflow: hidden;
+      text-align: center;
+      background: linear-gradient(
+        145deg,
+        rgb(36 52 74 / 96%),
+        rgb(24 37 55 / 96%)
+      );
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .screen[hidden] {
+      display: none;
+    }
+
+    .emoji,
+    .big {
+      font-family: "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+      line-height: 1;
+    }
+
+    .emoji {
+      font-size: clamp(3.5rem, 12vw, 5rem);
+    }
+
+    .big {
+      font-size: clamp(3.75rem, 14vw, 6rem);
+    }
+
+    h1,
+    h2,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 1.25rem;
+      font-size: clamp(2rem, 6vw, 2.75rem);
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: clamp(1.25rem, 4vw, 1.75rem);
+    }
+
+    .message,
+    .status {
+      color: var(--muted);
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      line-height: 1.65;
+    }
+
+    .action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3.25rem;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      color: #17120a;
+      font: 700 1rem/1.2 inherit;
+      background: linear-gradient(
+        135deg,
+        var(--accent),
+        var(--accent-strong)
+      );
+      border: 0;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 24px rgb(251 133 0 / 25%);
+      cursor: pointer;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgb(251 133 0 / 35%);
+    }
+
+    .action:focus-visible {
+      outline: 3px solid white;
+      outline-offset: 4px;
+    }
+
+    .action:active {
+      transform: translateY(0);
+    }
+
+    .spinner {
+      width: 4.5rem;
+      aspect-ratio: 1;
+      margin: 1.75rem auto;
+      border: 0.45rem solid var(--panel-soft);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    .progress-container {
+      height: 0.9rem;
+      margin: 1.5rem 0 0.75rem;
+      overflow: hidden;
+      background: var(--panel-soft);
+      border-radius: 999px;
+    }
+
+    .progress {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        var(--accent-strong),
+        var(--accent)
+      );
+      border-radius: inherit;
+      transition: width 0.15s linear;
+    }
+
+    .percentage {
+      margin-bottom: 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .alert {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: var(--danger-soft);
+      border: 2px solid var(--danger);
+      border-radius: 1rem;
+    }
+
+    .alert h2 {
+      color: #ff9aaa;
+    }
+
+    .salmonella {
+      margin: 1.25rem 0;
+      color: #ffb0bc;
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      font-weight: 700;
+    }
+
+    .footer {
+      margin: 1.75rem 0 0;
+      color: #8492a6;
+      font-size: 0.85rem;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <div class="card">
+      <section
+        id="accueil"
+        class="screen"
+        aria-labelledby="titre-accueil"
+      >
+        <div class="emoji" aria-hidden="true">🍓🔬</div>
+
+        <h1 id="titre-accueil">
+          Analyse spéciale pour José
+        </h1>
+
+        <p class="message">
+          Une analyse doit être effectuée sur ton échantillon.
+          <br><br>
+          Prépare-toi à découvrir le résultat...
+        </p>
+
+        <button
+          id="start-button"
+          class="action"
+          type="button"
+        >
+          🔬 Lancer l’analyse
+        </button>
+      </section>
+
+      <section
+        id="analyse"
+        class="screen"
+        aria-labelledby="titre-analyse"
+        hidden
+      >
+        <div class="emoji" aria-hidden="true">🧪</div>
+
+        <h1 id="titre-analyse">
+          Analyse en cours...
+        </h1>
+
+        <div class="spinner" aria-hidden="true"></div>
+
+        <p
+          id="status"
+          class="status"
+          aria-live="polite"
+        >
+          Préparation de l’échantillon...
+        </p>
+
+        <div
+          class="progress-container"
+          role="progressbar"
+          aria-label="Progression de l’analyse"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+        >
+          <div id="progress" class="progress"></div>
+        </div>
+
+        <p id="percentage" class="percentage">
+          0 %
+        </p>
+      </section>
+
+      <section
+        id="surprise"
+        class="screen"
+        aria-labelledby="titre-surprise"
+        hidden
+      >
+        <div class="big" aria-hidden="true">
+          🍓🦠🚨
+        </div>
+
+        <h1 id="titre-surprise">
+          JOSÉÉÉÉÉ !
+        </h1>
+
+        <div class="alert" role="alert">
+          <h2>
+            🚨 Analyse terminée 🚨
+          </h2>
+
+          <div class="salmonella">
+            SALMONELLA 🦠
+          </div>
+
+          <p>
+            <strong>
+              Bienvenue dans ta confiture remplie de salmonella !
+            </strong>
+          </p>
+        </div>
+
+        <p class="message">
+          Félicitations José 😂
+          <br><br>
+          Tu as attendu quelques secondes pour découvrir cette magnifique surprise.
+          <br><br>
+          🍓 + 🦠 = <strong>ta confiture</strong>
+        </p>
+
+        <p class="footer">
+          Laboratoire José — Département des surprises 😂
+        </p>
+
+        <button
+          id="restart-button"
+          class="action"
+          type="button"
+        >
+          ↻ Recommencer
+        </button>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const screens = {
+        accueil: document.querySelector("#accueil"),
+        analyse: document.querySelector("#analyse"),
+        surprise: document.querySelector("#surprise")
+      };
+
+      const startButton = document.querySelector("#start-button");
+      const restartButton = document.querySelector("#restart-button");
+      const status = document.querySelector("#status");
+      const progress = document.querySelector("#progress");
+      const progressBar = document.querySelector(".progress-container");
+      const percentage = document.querySelector("#percentage");
+
+      const steps = [
+        "Préparation de l'échantillon...",
+        "Homogénéisation...",
+        "Mise en incubation...",
+        "Analyse microbiologique...",
+        "Recherche des microorganismes...",
+        "Analyse de Salmonella...",
+        "Vérification des résultats...",
+        "Finalisation du test..."
+      ];
+
+      let timer;
+
+      function showScreen(screenName) {
+        Object.entries(screens).forEach(([name, screen]) => {
+          screen.hidden = name !== screenName;
+        });
+      }
+
+      function resetProgress() {
+        progress.style.width = "0%";
+        progressBar.setAttribute("aria-valuenow", "0");
+        percentage.textContent = "0 %";
+        status.textContent = steps[0];
+      }
+
+      function startAnalysis() {
+        clearInterval(timer);
+
+        showScreen("analyse");
+        resetProgress();
+
+        let value = 0;
+
+        timer = window.setInterval(() => {
+          value += 1;
+
+          const stepIndex = Math.min(
+            Math.floor(value / (100 / steps.length)),
+            steps.length - 1
+          );
+
+          progress.style.width = `${value}%`;
+          progressBar.setAttribute("aria-valuenow", String(value));
+          percentage.textContent = `${value} %`;
+          status.textContent = steps[stepIndex];
+
+          if (value === 100) {
+            clearInterval(timer);
+
+            window.setTimeout(() => {
+              showScreen("surprise");
+            }, 700);
+          }
+        }, 100);
+      }
+
+      startButton.addEventListener("click", startAnalysis);
+
+      restartButton.addEventListener("click", () => {
+        clearInterval(timer);
+        resetProgress();
+        showScreen("accueil");
+        startButton.focus();
+      });
+    })();
+  </script>
+</body>
+</html>
+```
